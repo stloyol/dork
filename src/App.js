@@ -1,5 +1,6 @@
 import "./App.scss";
 import { useState } from "react";
+import dv from "./dv.jpeg"
 const operators = [
   "filetype",
   "site",
@@ -31,6 +32,10 @@ function App() {
   }
   return (
     <div className="App">
+      <div className="topNav">
+        <img className="App-logo" src={dv}/>
+        <h1 className="title">Choose the dork side!</h1>
+      </div>
       <div className="operators-wrapper">
         <div className="operators">
           <h3>Operators</h3>
@@ -53,8 +58,6 @@ function App() {
               {o}
             </button>
           ))}
-        </div>
-        <div className="operators">
           <h3>Spec Operators</h3>
           {specOperators.map((s) => (
             <button
@@ -65,15 +68,18 @@ function App() {
             </button>
           ))}
         </div>
+        <div className="operators">
+          <h3 id="gsearch-lable">Focus to the input and press Enter</h3>
+          <input 
+            id="gsearch"
+            type="text"
+            placeholder="Search on Google..." 
+            onKeyDown={searchHandler}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
       </div>
-      <input 
-        id="gsearch" 
-        type="text"
-        placeholder="Search on Google..." 
-        onKeyDown={searchHandler}
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
     </div>
   );
 }
